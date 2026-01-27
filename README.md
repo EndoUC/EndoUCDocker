@@ -1,23 +1,39 @@
-# EndoUCDocker
+## Write your algorithm(s)
 
-Participants are required to submit their trained model as a **Docker container** so it can be evaluated on unseen data during the final phase.
+1. Replace the placeholder code in `run_model.py` script with your own algorithm(s). Create additional functions and scripts for modularity and organization as needed.
+2. Manage the dependencies:
+   * **Python:** Update `requirements.txt` with any required Python libraries.
+3. (optional) Locally run `run_model.py` to verify it can run successfully.
 
-### 1. Implement your algorithm
+The scripts have been designed to accept input and output directories as command-line arguments, allowing you to test with various data locations.
 
-- Replace the placeholder code in `python/run_model.py` with your own algorithm.
-- You may create additional Python files or folders for better modularity and organization.
-- The main entry point **must remain** `run_model.py`.
+* By default, the scripts look for input in the `/input` directory and write output to the `/output` directory, as expected by the Synapse submission system.
+* To use custom directories, specify them as arguments. For example:
 
-### 2. Input specification
+**Python**
+```bash
+python python/run_model.py --input-dir input/ --output-dir output/
+```
 
-- **Input directory:** `/input`
-- The input directory will contain the test images provided by the challenge organizers.
-- Participants should assume that all images are located directly inside the `/input` directory (no nested folders).
+where:
+* `input/` is used as the input directory
+* `output/` is used as the output directory
 
-Your algorithm must load and process **all images** found in `/input`.
 
-### 3. Output specification
+**Input files** 
+When running your Docker container, input files will be mounted into a directory called **/input** that expects images
 
-- **Output directory:** `/output`
-- Your algorithm must generate **CSV files**, according to submission task .
+**Output files**
+When running your Docker container, an output directory will be mounted as a directory called /output
 
+Predictions file (.csv file):
+
+**Task 1**:  ```id,mes_score_0_3```
+
+**Task 2**:  ```id,uceis_score```
+
+**Task 3**:  ```id,caption```
+
+
+**Update the Dockerfile**
+Ensure all dependencies are listed in `requirements.txt` so that they are installed during this build process, as network access is disabled when your submission is run.
