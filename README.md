@@ -19,6 +19,5 @@ Your algorithm must load and process **all images** found in `/input`.
 ### 3. Output specification
 
 - **Output directory:** `/output`
-- Your algorithm must generate **CSV files**, according to subbmision task.
-
+- Your algorithm must generate **CSV files**, according to submission task .
 
